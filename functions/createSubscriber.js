@@ -1,8 +1,6 @@
-import axios from 'axios';
-import formattedReturn from './formattedReturn';
-const dotenv = require('dotenv');
-
-dotenv.config({path: '../config.env' });
+const axios = require('axios');
+const formattedReturn = require('./formattedReturn');
+require('dotenv').config();
 
 const API_URL = process.env.CONVERTKIT_API_URL;
 const FORM_ID = process.env.FORM_ID;
@@ -13,22 +11,23 @@ const headers = {
   "Content-Type": "application/json"
 }
 
-
 const createSubscriber = async (event) => {
-  event.body = JSON.parse(event.body);
+  const eventBody = JSON.parse(event.body);
   const body = {
-    "api_key": apiKey,
-    "email": event.body.email,
-    "firstName": event.body.firstName,
-    "lastName": event.body.lastName,
-    "phone": event.body.phone
+    api_key: apiKey,
+    email: eventBody.email,
+    first_name: eventBody.firstName,
+    fields: {
+      last_name: eventBody.lastName,
+      phone: eventBody.phone
+    }
   }
   try {
-    const response = await axios.post(CreateSubscriberAPI, body, { headers })
-    return formattedReturn(200, response);
+    const response = await axios.post(CreateSubscriberAPI, body, { headers });
+    return formattedReturn(200, response.data);
   } catch (error) {
     throw error;
   }
 }
 
-export default createSubscriber;
+module.exports = createSubscriber;

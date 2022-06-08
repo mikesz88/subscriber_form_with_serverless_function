@@ -5,4 +5,4 @@ const formattedReturn = (statusCode, body) => {
   }
 }
 
-export default formattedReturn;
+module.exports = formattedReturn;
