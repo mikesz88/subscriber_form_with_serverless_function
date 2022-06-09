@@ -1,15 +1,15 @@
 const formattedReturn = require('./formattedReturn');
-const getSubscriber = require('./getSubscriber');
+const findSubscriber = require('./findSubscriber');
 const createSubscriber = require('./createSubscriber');
-const deleteSubscriber = require('./deleteSubscriber');
+const find = require('./find');
 
 exports.handler = async (event) => {
   if (event.httpMethod === 'GET') {
-    return await getSubscriber(event);
+    return await findSubscriber(event);
   } else if (event.httpMethod === 'POST') {
     return await createSubscriber(event);
-  } else if (event.httpMethod === 'DELETE') {
-    return await deleteSubscriber(event);
+  } else if (event.httpMethod === 'PUT') {
+    return await find(event);
   } else {
     return formattedReturn(405, {});
   }

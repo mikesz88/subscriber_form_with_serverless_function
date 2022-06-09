@@ -4,7 +4,7 @@ require('dotenv').config();
 
 const API_URL = process.env.CONVERTKIT_API_URL;
 const FORM_ID = process.env.FORM_ID;
-const CreateSubscriberAPI = `${API_URL}forms/${FORM_ID}/subscribe`
+const createSubscriberURL = `${API_URL}forms/${FORM_ID}/subscribe`
 const apiKey = process.env.CONVERTKIT_API_KEY;
 
 const headers = {
@@ -12,6 +12,7 @@ const headers = {
 }
 
 const createSubscriber = async (event) => {
+  console.log(event.body);
   const eventBody = JSON.parse(event.body);
   const body = {
     api_key: apiKey,
@@ -23,7 +24,7 @@ const createSubscriber = async (event) => {
     }
   }
   try {
-    const response = await axios.post(CreateSubscriberAPI, body, { headers });
+    const response = await axios.post(createSubscriberURL, body, { headers });
     return formattedReturn(200, response.data);
   } catch (error) {
     throw error;

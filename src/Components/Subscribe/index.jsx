@@ -96,8 +96,8 @@ const Subscribe = () => {
         </div>
       </form>
       <nav>
-        <Link to="/findSubscriber">Find Subscriber</Link> |{" "}
-        <Link to="/unsubscribe">Unsubscribe</Link>
+        <Link onClick={resetForm} to="/findSubscriber">Find Subscriber</Link> |{" "}
+        <Link onClick={resetForm} to="/unsubscribe">Unsubscribe</Link>
       </nav>
     </div>
   );

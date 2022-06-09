@@ -6,9 +6,9 @@ import {
   Route,
 } from "react-router-dom";
 import './index.css';
-import Subscribe from './Subscribe';
-import FindSubscriber from './Routes/FindSubscriber';
-import Unsubscribe from './Routes/Unsubscribe';
+import Subscribe from './Components/Subscribe';
+import FindSubscriber from './Components/FindSubscriber';
+import Unsubscribe from './Components/Unsubscribe';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
