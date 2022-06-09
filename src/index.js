@@ -6,19 +6,23 @@ import {
   Route,
 } from "react-router-dom";
 import './index.css';
-import Subscribe from './Components/Subscribe';
-import FindSubscriber from './Components/FindSubscriber';
-import Unsubscribe from './Components/Unsubscribe';
+import theme from './theme';
+import Subscribe from './Features/Subscribe';
+import FindSubscriber from './Features/FindSubscriber';
+import Unsubscribe from './Features/Unsubscribe';
+import { ThemeProvider } from 'styled-components';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Router>
-      <Routes>
-        <Route path="/" element={<Subscribe />} />
-        <Route path="findSubscriber" element={<FindSubscriber />} />
-        <Route path="unsubscribe" element={<Unsubscribe />} />
-      </Routes>
-    </Router>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Subscribe />} />
+          <Route path="findSubscriber" element={<FindSubscriber />} />
+          <Route path="unsubscribe" element={<Unsubscribe />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   </React.StrictMode>
 );

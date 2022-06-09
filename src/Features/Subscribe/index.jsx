@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "./subscribe.css";
+import { StyledButton } from '../../Components/StyledButton';
+import { StyledHeader } from '../../Components/StyledHeader';
+import { UserAddOutlined} from '@ant-design/icons'
 
 const Subscribe = () => {
   const [email, setEmail] = useState("");
@@ -36,63 +38,63 @@ const Subscribe = () => {
   };
 
   return (
-    <div>
-      <h1>Subscribe to my email list!</h1>
+    <div style={{ backgroundColor: '#06283D', width: '100vw', height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+      <StyledHeader>
+      <UserAddOutlined />
+        Subscribe
+      <UserAddOutlined />
+      </StyledHeader>
       <form onSubmit={onSubmit}>
-        <div className="input-group">
+        <div>
           <input
             type="text"
             id="email"
             required
-            className="input"
             value={email}
             onChange={e => setEmail(e.target.value)}
           />
-          <label htmlFor="email" className="input-label">
+          <label htmlFor="email">
             Email Address
           </label>
         </div>
-        <div className="input-group">
+        <div>
           <input
             type="text"
             id="firstName"
             required
-            className="input"
             value={firstName}
             onChange={e => setFirstName(e.target.value)}
           />
-          <label htmlFor="firstName" className="input-label">
+          <label htmlFor="firstName">
             First Name
           </label>
         </div>
-        <div className="input-group">
+        <div>
           <input
             type="text"
             id="lastName"
             required
-            className="input"
             value={lastName}
             onChange={e => setLastName(e.target.value)}
           />
-          <label htmlFor="lastName" className="input-label">
+          <label htmlFor="lastName">
             Last Name
           </label>
         </div>
-        <div className="input-group">
+        <div>
           <input
             type="tel"
             id="phone"
             required
-            className="input"
             value={phone}
             onChange={e => setPhone(e.target.value)}
           />
-          <label htmlFor="phone" className="input-label">
+          <label htmlFor="phone">
             Phone
           </label>
         </div>
         <div>
-          <button type="submit">Subscribe</button>
+          <StyledButton block type="submit">Subscribe</StyledButton>
         </div>
       </form>
       <nav>

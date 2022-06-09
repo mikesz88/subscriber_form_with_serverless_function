@@ -37,7 +37,8 @@ const FindSubscriber = () => {
           <label htmlFor="email">Email Address</label>
           <input 
             type="email" 
-            value={email} 
+            value={email}
+            required 
             onChange={e => setEmail(e.target.value)} 
             id="email" 
           />

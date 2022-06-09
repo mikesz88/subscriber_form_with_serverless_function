@@ -12,7 +12,6 @@ const headers = {
 }
 
 const createSubscriber = async (event) => {
-  console.log(event.body);
   const eventBody = JSON.parse(event.body);
   const body = {
     api_key: apiKey,

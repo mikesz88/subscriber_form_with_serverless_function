@@ -11,9 +11,7 @@ const headers = {
 }
 
 const find = async (event) => {
-  console.log(event);
   const eventBody = JSON.parse(event.body);
-  console.log(eventBody);
   const body = {
     api_secret: apiSecretKey,
     email: eventBody.email
