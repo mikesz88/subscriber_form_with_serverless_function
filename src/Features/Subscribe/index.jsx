@@ -5,7 +5,7 @@ import { StyledHeader } from '../../Components/StyledHeader';
 import { StyledFormItem } from "../../Components/StyledFormItem";
 import { StyledWrapper } from "../../Components/StyledWrapper";
 import { UserAddOutlined} from '@ant-design/icons'
-import { Form, Modal } from "antd";
+import { Form, Modal, Spin } from "antd";
 import { StyledContainer } from "../../Components/StyledContainer";
 import { StyledInput } from "../../Components/StyledInput";
 import StyledBackground from "../../Components/StyledBackground";
@@ -17,6 +17,7 @@ import subscribeData from "./helper";
 const Subscribe = () => {
   const [form] = Form.useForm();
   const [isDisabled, setIsDisabled] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onFieldsChange = (_, field) => {
     if ((field.every(object =>object.errors.length === 0)) 
@@ -28,6 +29,7 @@ const Subscribe = () => {
   }
 
   const onSubmit = async values => {
+    setIsLoading(true);
     console.log(values);
     const { email, firstName, lastName, phone } = values;
     const headers = {
@@ -42,8 +44,10 @@ const Subscribe = () => {
     try {
       await axios.post("/api/subscribe", body, { headers });
       form.resetFields();
+      setIsLoading(false);
       success();
     } catch (error) {
+      setIsLoading(false);
       failure();
       console.error(error);
     }
@@ -68,7 +72,7 @@ const Subscribe = () => {
   }
 
   return (
-    <>
+    <Spin spinning={isLoading}>
       <StyledBackground />
       <StyledContainer>
         <StyledWrapper>
@@ -114,7 +118,7 @@ const Subscribe = () => {
           </StyledNavbar>
         </StyledWrapper>
       </StyledContainer>
-    </>
+    </Spin>
   );
 };
 

@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import axios from 'axios';
 import StyledBackground from '../../Components/StyledBackground';
 import { StyledContainer } from '../../Components/StyledContainer';
 import { StyledWrapper } from '../../Components/StyledWrapper';
 import { StyledHeader } from '../../Components/StyledHeader';
 import { UserOutlined } from '@ant-design/icons'
-import { Form, Modal } from 'antd';
+import { Form, Modal, Spin } from 'antd';
 import { StyledFormItem } from '../../Components/StyledFormItem';
 import { StyledInput } from '../../Components/StyledInput';
 import { StyledButton } from '../../Components/StyledButton';
@@ -14,9 +14,11 @@ import { StyledLink } from '../../Components/StyledLink';
 import { StyledTableHeader } from '../../Components/StyledTableHeader';
 
 const FindSubscriber = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [form] = Form.useForm();
 
   const onSubmit = async values => {
+    setIsLoading(true);
     console.log(values);
     const headers = {
       "Content-Type": "application/json"
@@ -29,9 +31,11 @@ const FindSubscriber = () => {
     try {
       const response = await axios.get("/api/subscribe", body, { headers })
       success(response.data[0]);
+      setIsLoading(false);
       form.resetFields();
     } catch (error) {
       failure();
+      setIsLoading(false);
       console.error(error);
     }
   }
@@ -81,7 +85,7 @@ const FindSubscriber = () => {
   }
 
   return (
-    <>
+    <Spin spinning={isLoading}>
       <StyledBackground />
       <StyledContainer>
         <StyledWrapper>
@@ -132,7 +136,7 @@ const FindSubscriber = () => {
           </StyledNavbar>
         </StyledWrapper>
       </StyledContainer>
-    </>
+    </Spin>
   )
 }
 

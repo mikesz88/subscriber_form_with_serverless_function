@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import StyledBackground from "../../Components/StyledBackground";
 import { StyledContainer } from "../../Components/StyledContainer";
@@ -10,13 +10,14 @@ import { StyledLink } from "../../Components/StyledLink";
 import { StyledFormItem } from "../../Components/StyledFormItem";
 import { StyledInput } from "../../Components/StyledInput";
 import { StyledButton } from "../../Components/StyledButton";
-import { Form, Modal } from "antd";
+import { Form, Modal, Spin } from "antd";
 
 const Unsubscribe = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [form] = Form.useForm();
 
   const onSubmit = async values => {
-    console.log(values);
+    setIsLoading(true);
     const headers = {
       "Content-Type": "application/json"
     };
@@ -30,14 +31,17 @@ const Unsubscribe = () => {
         await axios.put("/api/subscribe", body, { headers });
         success();
         form.resetFields();
+        setIsLoading(false);
       } else {
         alreadyDeleted();
         form.resetFields();
+        setIsLoading(false);
       }
     } catch (error) {
       console.error(error);
       failure();    
       form.resetFields();
+      setIsLoading(false);
     }
   }
 
@@ -71,7 +75,7 @@ const Unsubscribe = () => {
 }
 
   return (
-    <>
+    <Spin spinning={isLoading}>
       <StyledBackground />
       <StyledContainer>
         <StyledWrapper>
@@ -122,7 +126,7 @@ const Unsubscribe = () => {
           </StyledNavbar>
         </StyledWrapper>
       </StyledContainer>
-    </>
+    </Spin>
   )
 }
 
