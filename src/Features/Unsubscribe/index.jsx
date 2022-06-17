@@ -33,7 +33,7 @@ const Unsubscribe = () => {
         form.resetFields();
         setIsLoading(false);
       } else {
-        alreadyDeleted();
+        failure();
         form.resetFields();
         setIsLoading(false);
       }
@@ -51,15 +51,6 @@ const Unsubscribe = () => {
       centered: true, 
       title: 'Success',
       content: 'Contact successfully unsubscribed.'
-    })
-  }
-
-  const alreadyDeleted = () => {
-    Modal.warning({
-      maskClosable: true,
-      centered: true, 
-      title: 'Previously Deleted',
-      content: 'The email has already been unsubscribed.'
     })
   }
 
