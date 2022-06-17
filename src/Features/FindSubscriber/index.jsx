@@ -85,58 +85,60 @@ const FindSubscriber = () => {
   }
 
   return (
-    <Spin spinning={isLoading}>
+    <>
       <StyledBackground />
       <StyledContainer>
         <StyledWrapper>
-          <StyledHeader>
-            <UserOutlined />
-            Find Subscriber
-            <UserOutlined />
-          </StyledHeader>
-          <Form
-            name='findSubscriber'
-            form={form}
-            onFinish={onSubmit}
-            autoComplete="off"
-            labelAlign="left"
-            labelCol={{
-              span: 10,
-            }}
-            wrapperCol={{
-              span: 20,
-            }}
-            size="large"
-          >
-            <StyledFormItem
-              label="Email Address"
-              name="email"
-              colon={false}
-              required={false}
-              rules={[
-                {
-                  type: 'email', 
-                  message: 'Please write a valid email'
-                },
-                {
-                  required: true,
-                  message: 'Please write your email'
-                }
-              ]}
+          <Spin spinning={isLoading}>
+            <StyledHeader>
+              <UserOutlined />
+              Find Subscriber
+              <UserOutlined />
+            </StyledHeader>
+            <Form
+              name='findSubscriber'
+              form={form}
+              onFinish={onSubmit}
+              autoComplete="off"
+              labelAlign="left"
+              labelCol={{
+                span: 10,
+              }}
+              wrapperCol={{
+                span: 20,
+              }}
+              size="large"
             >
-              <StyledInput type="email" required />
-            </StyledFormItem>
-            <Form.Item noStyle>
-              <StyledButton block htmlType='submit'>FIND</StyledButton>
-            </Form.Item>
-          </Form>
-          <StyledNavbar>
-            <StyledLink to="/">Subscribe</StyledLink>
-            <StyledLink to="/unsubscribe">Unsubscribe</StyledLink>
-          </StyledNavbar>
+              <StyledFormItem
+                label="Email Address"
+                name="email"
+                colon={false}
+                required={false}
+                rules={[
+                  {
+                    type: 'email', 
+                    message: 'Please write a valid email'
+                  },
+                  {
+                    required: true,
+                    message: 'Please write your email'
+                  }
+                ]}
+              >
+                <StyledInput type="email" required />
+              </StyledFormItem>
+              <Form.Item noStyle>
+                <StyledButton block htmlType='submit'>FIND</StyledButton>
+              </Form.Item>
+            </Form>
+            <StyledNavbar>
+              <StyledLink to="/">Subscribe</StyledLink>
+              <StyledLink to="/unsubscribe">Unsubscribe</StyledLink>
+            </StyledNavbar>
+          </Spin>
         </StyledWrapper>
       </StyledContainer>
-    </Spin>
+    </>
   )
 }
 

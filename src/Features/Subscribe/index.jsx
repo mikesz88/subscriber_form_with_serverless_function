@@ -72,53 +72,55 @@ const Subscribe = () => {
   }
 
   return (
-    <Spin spinning={isLoading}>
+    <>
       <StyledBackground />
       <StyledContainer>
         <StyledWrapper>
-          <StyledHeader>
-          <UserAddOutlined />
-            Subscribe
-          <UserAddOutlined />
-          </StyledHeader>
-          <Form
-            name="subscribe"
-            form={form}
-            onFinish={onSubmit}
-            onFieldsChange={onFieldsChange}
-            autoComplete="off"
-            labelAlign="left"
-            labelCol={{
-              span: 10,
-            }}
-            wrapperCol={{
-              span: 20,
-            }}
-            size="large"
-          >
-            {subscribeData.map(formItem => (
-              <StyledFormItem
-                key={formItem.name}
-                label={formItem.label}
-                name={formItem.name}
-                colon={false}
-                required={false}
-                rules={formItem.rules}
-              >
-                <StyledInput type={formItem.inputType} required />
-              </StyledFormItem>
-            ))}
-            <Form.Item noStyle>
-              <StyledButton disabled={isDisabled} block htmlType="submit">Subscribe</StyledButton>
-            </Form.Item>
-            </Form>
-          <StyledNavbar>
-            <StyledLink to="/findSubscriber">Find Subscriber</StyledLink>
-            <StyledLink to="/unsubscribe">Unsubscribe</StyledLink>
-          </StyledNavbar>
+          <Spin spinning={isLoading}>
+            <StyledHeader>
+            <UserAddOutlined />
+              Subscribe
+            <UserAddOutlined />
+            </StyledHeader>
+            <Form
+              name="subscribe"
+              form={form}
+              onFinish={onSubmit}
+              onFieldsChange={onFieldsChange}
+              autoComplete="off"
+              labelAlign="left"
+              labelCol={{
+                span: 10,
+              }}
+              wrapperCol={{
+                span: 20,
+              }}
+              size="large"
+            >
+              {subscribeData.map(formItem => (
+                <StyledFormItem
+                  key={formItem.name}
+                  label={formItem.label}
+                  name={formItem.name}
+                  colon={false}
+                  required={false}
+                  rules={formItem.rules}
+                >
+                  <StyledInput type={formItem.inputType} required />
+                </StyledFormItem>
+              ))}
+              <Form.Item noStyle>
+                <StyledButton disabled={isDisabled} block htmlType="submit">Subscribe</StyledButton>
+              </Form.Item>
+              </Form>
+            <StyledNavbar>
+              <StyledLink to="/findSubscriber">Find Subscriber</StyledLink>
+              <StyledLink to="/unsubscribe">Unsubscribe</StyledLink>
+            </StyledNavbar>
+          </Spin>
         </StyledWrapper>
       </StyledContainer>
-    </Spin>
+    </>
   );
 };
 
