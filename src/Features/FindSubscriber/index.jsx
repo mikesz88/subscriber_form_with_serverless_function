@@ -88,8 +88,8 @@ const FindSubscriber = () => {
     <>
       <StyledBackground />
       <StyledContainer>
-        <StyledWrapper>
-          <Spin spinning={isLoading}>
+        <Spin spinning={isLoading}>
+          <StyledWrapper>
             <StyledHeader>
               <UserOutlined />
               Find Subscriber
@@ -135,8 +135,8 @@ const FindSubscriber = () => {
               <StyledLink to="/">Subscribe</StyledLink>
               <StyledLink to="/unsubscribe">Unsubscribe</StyledLink>
             </StyledNavbar>
-          </Spin>
-        </StyledWrapper>
+          </StyledWrapper>
+        </Spin>
       </StyledContainer>
     </>
   )
