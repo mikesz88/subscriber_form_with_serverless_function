@@ -75,8 +75,8 @@ const Subscribe = () => {
     <>
       <StyledBackground />
       <StyledContainer>
-        <Spin spinning={isLoading}>
-          <StyledWrapper>
+        <StyledWrapper>
+          <Spin spinning={isLoading}>
             <StyledHeader>
             <UserAddOutlined />
               Subscribe
@@ -117,8 +117,8 @@ const Subscribe = () => {
               <StyledLink to="/findSubscriber">Find Subscriber</StyledLink>
               <StyledLink to="/unsubscribe">Unsubscribe</StyledLink>
             </StyledNavbar>
-          </StyledWrapper>
-        </Spin>
+          </Spin>
+        </StyledWrapper>
       </StyledContainer>
     </>
   );

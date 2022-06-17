@@ -78,8 +78,8 @@ const Unsubscribe = () => {
     <>
       <StyledBackground />
       <StyledContainer>
-        <Spin spinning={isLoading}>
-          <StyledWrapper>
+        <StyledWrapper>
+          <Spin spinning={isLoading}>
             <StyledHeader>
               <UserDeleteOutlined />
               Unsubscribe
@@ -125,8 +125,8 @@ const Unsubscribe = () => {
               <StyledLink to='/'>Subscribe</StyledLink>
               <StyledLink to="/findSubscriber">Find Subscriber</StyledLink>
             </StyledNavbar>
-          </StyledWrapper>
-        </Spin>
+          </Spin>
+        </StyledWrapper>
       </StyledContainer>
     </>
   )
