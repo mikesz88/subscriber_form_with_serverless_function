@@ -10,7 +10,7 @@ import { StyledLink } from "../../Components/StyledLink";
 import { StyledFormItem } from "../../Components/StyledFormItem";
 import { StyledInput } from "../../Components/StyledInput";
 import { StyledButton } from "../../Components/StyledButton";
-import { Form } from "antd";
+import { Form, Modal } from "antd";
 
 const Unsubscribe = () => {
   const [form] = Form.useForm();
@@ -28,69 +28,98 @@ const Unsubscribe = () => {
       console.log(response);
       if (response.data.length > 0) {
         await axios.put("/api/subscribe", body, { headers });
-        console.log('test');
+        success();
         form.resetFields();
       } else {
+        alreadyDeleted();
         form.resetFields();
-        throw new Error('The email has already been unsubscribed')
       }
-      // setSuccess(true);
     } catch (error) {
       console.error(error);
-      // setSuccess(false);
+      failure();    
+      form.resetFields();
     }
   }
 
+  const success = () => {
+    Modal.success({
+      maskClosable: true,
+      centered: true, 
+      title: 'Success',
+      content: 'Contact successfully unsubscribed.'
+    })
+  }
+
+  const alreadyDeleted = () => {
+    Modal.warning({
+      maskClosable: true,
+      centered: true, 
+      title: 'Previously Deleted',
+      content: 'The email has already been unsubscribed.'
+    })
+  }
+
+  const failure = () => {
+    Modal.error({
+      maskClosable: true,
+      centered: true,
+      title: 'Email Not Found',
+      content: `
+      Contact does not exist.
+      `
+  })
+}
+
   return (
     <>
-    <StyledBackground />
-    <StyledContainer>
-      <StyledWrapper>
-        <StyledHeader>
-          <UserDeleteOutlined />
-          Unsubscribe
-          <UserDeleteOutlined />
-        </StyledHeader>
-        <Form
-          name="unsubscribe"
-          form={form}
-          onFinish={onSubmit}
-          autoComplete="off"
-          labelAlign="left"
-          labelCol={{
-            span: 10,
-          }}
-          wrapperCol={{
-            span: 20,
-          }}
-          size="large"
-        >
-          <StyledFormItem
-              label="Email Address"
-              name="email"
-              colon={false}
-              required={false}
-              rules={[
-                {
-                  type: 'email', 
-                  message: 'Please write a valid email'
-                },
-                {
-                  required: true,
-                  message: 'Please write your email'
-                }
-              ]}
-            >
-              <StyledInput type="email" required />
-          </StyledFormItem>
-          <Form.Item noStyle>
-              <StyledButton block htmlType='submit'>UNSUBSCRIBE</StyledButton>
-          </Form.Item>
-        </Form>
-      <StyledNavbar>
-        <StyledLink to='/'>Subscribe</StyledLink>
-        <StyledLink to="/findSubscriber">Find Subscriber</StyledLink>
-      </StyledNavbar>
+      <StyledBackground />
+      <StyledContainer>
+        <StyledWrapper>
+          <StyledHeader>
+            <UserDeleteOutlined />
+            Unsubscribe
+            <UserDeleteOutlined />
+          </StyledHeader>
+          <Form
+            name="unsubscribe"
+            form={form}
+            onFinish={onSubmit}
+            autoComplete="off"
+            labelAlign="left"
+            labelCol={{
+              span: 10,
+            }}
+            wrapperCol={{
+              span: 20,
+            }}
+            size="large"
+          >
+            <StyledFormItem
+                label="Email Address"
+                name="email"
+                colon={false}
+                required={false}
+                rules={[
+                  {
+                    type: 'email', 
+                    message: 'Please write a valid email'
+                  },
+                  {
+                    required: true,
+                    message: 'Please write your email'
+                  }
+                ]}
+              >
+                <StyledInput type="email" required />
+            </StyledFormItem>
+            <Form.Item noStyle>
+                <StyledButton block htmlType='submit'>UNSUBSCRIBE</StyledButton>
+            </Form.Item>
+          </Form>
+          <StyledNavbar>
+            <StyledLink to='/'>Subscribe</StyledLink>
+            <StyledLink to="/findSubscriber">Find Subscriber</StyledLink>
+          </StyledNavbar>
         </StyledWrapper>
       </StyledContainer>
     </>
